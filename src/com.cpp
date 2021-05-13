@@ -1,11 +1,11 @@
-#include "com.h"
-#include "rs_485_node.h"
+#include "com.hpp"
+#include "main.hpp"
 
 serial::Serial ser;
-typedef unsigned char  BYTE;
-typedef unsigned short WORD;
-typedef unsigned int   DWORD;
-
+//typedef unsigned char  BYTE;
+//typedef unsigned short WORD;
+//typedef unsigned int   DWORD;
+//Communication Com;
 //Initialize serial communication in ROS
 int InitSerial(void)
 {

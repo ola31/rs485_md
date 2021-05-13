@@ -1,12 +1,12 @@
-#ifndef COM_H
-#define COM_H
+//#ifndef COM_H
+//#define COM_H
 
 
 
 #define MAX_PACKET_SIZE     26
 #define MAX_DATA_SIZE       21
 
-#include "rs_485_node.h"
+#include "main.hpp"
 
 typedef struct {
     BYTE bySndBuf[MAX_PACKET_SIZE];
@@ -72,7 +72,8 @@ typedef struct {
     BYTE byHigh;
 }IByte;
 
+extern int InitSerial(void);
+extern int PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]);
 
 
-
-#endif // COM_H
+//#endif // COM_H

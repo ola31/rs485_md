@@ -1,5 +1,5 @@
-#ifndef RS_485_NODE_H
-#define RS_485_NODE_H
+//#ifndef RS_485_NODE_H
+//#define RS_485_NODE_H
 
 #include <ros/ros.h>
 #include <stdio.h>
@@ -39,4 +39,4 @@ typedef unsigned int   DWORD;
 
 
 
-#endif // RS_485_NODE_H
+//#endif // RS_485_NODE_H
