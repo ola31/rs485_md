@@ -7,6 +7,11 @@
 #define MAX_DATA_SIZE       21
 
 #include "main.hpp"
+//#include <serial/serial.h>
+
+typedef unsigned char  BYTE;
+typedef unsigned short WORD;
+typedef unsigned int   DWORD;
 
 typedef struct {
     BYTE bySndBuf[MAX_PACKET_SIZE];
@@ -64,16 +69,25 @@ typedef struct {
     BYTE fgResetAlarm;
 
 }Communication;
-extern Communication Com;
+//Communication Com;
 
+
+class COM{
+
+private:
+  Communication Com;
+
+public:
+  int InitSerial(void);
+  int PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]);
+  void ReadMdData(BYTE* rx_array,BYTE byBufNumber);
+
+};
 
 typedef struct {
     BYTE byLow;
     BYTE byHigh;
 }IByte;
-
-extern int InitSerial(void);
-extern int PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]);
 
 
 //#endif // COM_H

@@ -1,5 +1,4 @@
 #include "com.hpp"
-#include "main.hpp"
 
 serial::Serial ser;
 //typedef unsigned char  BYTE;
@@ -7,13 +6,13 @@ serial::Serial ser;
 //typedef unsigned int   DWORD;
 //Communication Com;
 //Initialize serial communication in ROS
-int InitSerial(void)
+int COM::InitSerial(void)
 {
     try
     {
         ser.setPort("/dev/ttyUSB0");
-        ser.setBaudrate(57600);
-        serial::Timeout to = serial::Timeout::simpleTimeout(1667); //1667 when baud is 57600, 0.6ms
+        ser.setBaudrate(19200); //57600
+        serial::Timeout to = serial::Timeout::simpleTimeout(1000); //1667 when baud is 57600, 0.6ms
         ser.setTimeout(to);                                        //2857 when baud is 115200, 0.35ms
         ser.open();
     }
@@ -30,7 +29,7 @@ int InitSerial(void)
 
 
 //for sending the data
-int PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]){
+int COM::PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]){
 
   IByte iData;
   BYTE byPidDataSize;  //, byDataSize;
@@ -42,7 +41,7 @@ int PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]){
     Com.bySndBuf[j] = 0;
   }
 
-  Com.bySndBuf[0] = 184;  //RMID = 184
+  Com.bySndBuf[0] = 183;  //RMID = 184
   Com.bySndBuf[1] = 172;  //IDPC = 172
   Com.bySndBuf[2] = 1;    //ID of MD_motor_driver = 1
   Com.bySndBuf[3] = byPID;  //PID
@@ -62,4 +61,15 @@ int PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]){
 
   ser.write(Com.bySndBuf, byPidDataSize);  //Serial write
 
+
+
+}
+
+void COM::ReadMdData(BYTE* rx_array,BYTE byBufNumber){
+
+  byBufNumber = ser.available();
+  if(byBufNumber != 0)
+  {
+      ser.read(rx_array, byBufNumber);
+  }
 }

@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   serial
   std_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES rs485_md
-  CATKIN_DEPENDS roscpp serial std_msgs
+  CATKIN_DEPENDS roscpp serial std_msgs geometry_msgs
 #  DEPENDS system_lib
 )
 
@@ -124,6 +125,7 @@ include_directories(
 add_library(${PROJECT_NAME}_library
    src/main.cpp
    src/com.cpp
+   src/robot.cpp
 )
   #${${PROJECT_NAME}_SRCS}
  #)
@@ -139,7 +141,7 @@ target_link_libraries(${PROJECT_NAME}_library ${catkin_LIBRARIES})
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
- add_executable(rs485_md_node src/main.cpp src/com.cpp)
+ add_executable(rs485_md_node src/main.cpp src/com.cpp src/robot.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
