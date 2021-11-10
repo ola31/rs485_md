@@ -10,7 +10,7 @@ int COM::InitSerial(void)
 {
     try
     {
-        ser.setPort("/dev/ttyUSB0");
+        ser.setPort("/dev/ttyUSB1");
         ser.setBaudrate(115200); //57600 //19200(default)
         serial::Timeout to = serial::Timeout::simpleTimeout(2857); //1667 when baud is 57600, 0.6ms
         ser.setTimeout(to);                                        //2857 when baud is 115200, 0.35ms

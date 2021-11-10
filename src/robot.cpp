@@ -2,8 +2,8 @@
 
 #define GearHead_Ratio 50
 
-#define ROBOT_WHEEL_DIA 0.2 //m
-#define ROBOT_WHEEL_SEP 1.0 //m
+#define ROBOT_WHEEL_DIA 0.185 //m
+#define ROBOT_WHEEL_SEP 0.78 //m  78,18.5
 
 #define Left_Wheel_num 1  // mot1
 #define PI 3.141592

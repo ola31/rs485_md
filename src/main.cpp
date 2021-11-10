@@ -27,7 +27,7 @@ int main(int argc, char **argv)
   int result1, result2;
   robot.InitSerial();
 
-  com.InitSerial();
+  //com.InitSerial();
 
   //robot.set_baudrate_57600();
 
