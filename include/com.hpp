@@ -80,7 +80,7 @@ private:
 public:
   int InitSerial(void);
   int PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]);
-  void ReadMdData(BYTE* rx_array,BYTE byBufNumber);
+  void ReadMdData(BYTE* rx_array,BYTE *byBufNumber);
 
 };
 

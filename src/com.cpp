@@ -11,8 +11,8 @@ int COM::InitSerial(void)
     try
     {
         ser.setPort("/dev/ttyUSB0");
-        ser.setBaudrate(19200); //57600
-        serial::Timeout to = serial::Timeout::simpleTimeout(1000); //1667 when baud is 57600, 0.6ms
+        ser.setBaudrate(115200); //57600 //19200(default)
+        serial::Timeout to = serial::Timeout::simpleTimeout(2857); //1667 when baud is 57600, 0.6ms
         ser.setTimeout(to);                                        //2857 when baud is 115200, 0.35ms
         ser.open();
     }
@@ -35,7 +35,7 @@ int COM::PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]){
   BYTE byPidDataSize;  //, byDataSize;
   BYTE i, j;
 
-  static BYTE byTempDataSum;
+  /*static*/ BYTE byTempDataSum=0;
 
   for(j = 0; j <MAX_PACKET_SIZE; j++){       //MAX_PACKET_SIZE = 26
     Com.bySndBuf[j] = 0;
@@ -60,16 +60,19 @@ int COM::PutMdData(BYTE byPID, BYTE byDataSize, int nArray[]){
   Com.bySndBuf[byPidDataSize-1] = ~(byTempDataSum) + 1; //check sum
 
   ser.write(Com.bySndBuf, byPidDataSize);  //Serial write
+  //ROS_INFO("put md data");
 
 
 
 }
 
-void COM::ReadMdData(BYTE* rx_array,BYTE byBufNumber){
+void COM::ReadMdData(BYTE* rx_array,BYTE* byBufNumber){
 
-  byBufNumber = ser.available();
+  BYTE byBufNumber_ = ser.available();
+  *byBufNumber = byBufNumber_;
   if(byBufNumber != 0)
   {
-      ser.read(rx_array, byBufNumber);
+      ser.read(rx_array, byBufNumber_);
   }
 }
+
