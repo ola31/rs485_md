@@ -59,8 +59,8 @@ short pre_l_rpm = -1;
 
 void ROBOT::go_cmd_vel(double linear_x, double angular_z){
 
-  short R_wheel_RPM = -1*(short)(GearHead_Ratio*30.0*((2*linear_x) + (ROBOT_WHEEL_SEP*angular_z))/(ROBOT_WHEEL_DIA*PI));
-  short L_wheel_RPM = (short)(GearHead_Ratio*30.0*((2*linear_x) - (ROBOT_WHEEL_SEP*angular_z))/(ROBOT_WHEEL_DIA*PI));
+  short R_wheel_RPM = 1*(short)(GearHead_Ratio*30.0*((2*linear_x) + (ROBOT_WHEEL_SEP*angular_z))/(ROBOT_WHEEL_DIA*PI));
+  short L_wheel_RPM = -1*(short)(GearHead_Ratio*30.0*((2*linear_x) - (ROBOT_WHEEL_SEP*angular_z))/(ROBOT_WHEEL_DIA*PI));
 
   //if(pre_l_rpm !=L_wheel_RPM || pre_r_rpm !=R_wheel_RPM){
     //ROS_INFO("r_rpm : %d l_rpm : %d",R_wheel_RPM,L_wheel_RPM);
