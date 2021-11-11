@@ -1,0 +1,4 @@
+<launch>
+  <node name="rs485_md_node" pkg="rs485_md" type="rs485_md_node" output="screen" />
+</launch>
+
